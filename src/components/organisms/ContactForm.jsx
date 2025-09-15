@@ -18,13 +18,13 @@ const ContactForm = ({ contact, onSubmit, onCancel, isSubmitting = false }) => {
 
   useEffect(() => {
     if (contact) {
-      setFormData({
-        firstName: contact.firstName || "",
-        lastName: contact.lastName || "",
-        email: contact.email || "",
-        phone: contact.phone || "",
-        company: contact.company || "",
-        status: contact.status || "Lead"
+setFormData({
+        first_name_c: contact.first_name_c || "",
+        last_name_c: contact.last_name_c || "",
+        email_c: contact.email_c || "",
+        phone_c: contact.phone_c || "",
+        company_c: contact.company_c || "",
+        status_c: contact.status_c || "Lead"
       });
     }
   }, [contact]);

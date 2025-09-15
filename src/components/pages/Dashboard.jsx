@@ -53,11 +53,11 @@ const Dashboard = () => {
 
   const calculateMetrics = () => {
     const totalContacts = contacts.length;
-    const activeDeals = deals.filter(deal => deal.stage !== "Closed").length;
+const activeDeals = deals.filter(deal => deal.stage_c !== "Closed").length;
     const totalPipelineValue = deals
-      .filter(deal => deal.stage !== "Closed")
-      .reduce((sum, deal) => sum + deal.value, 0);
-    const wonDeals = deals.filter(deal => deal.stage === "Closed").length;
+      .filter(deal => deal.stage_c !== "Closed")
+      .reduce((sum, deal) => sum + deal.value_c, 0);
+    const wonDeals = deals.filter(deal => deal.stage_c === "Closed").length;
 
     return {
       totalContacts,
@@ -84,8 +84,8 @@ const Dashboard = () => {
     return deals.find(deal => deal.Id === id);
   };
 
-  const recentDeals = deals
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+const recentDeals = deals
+    .sort((a, b) => new Date(b.created_at_c || b.CreatedOn) - new Date(a.created_at_c || a.CreatedOn))
     .slice(0, 3);
 
   if (loading) return <Loading type="cards" />;
@@ -174,8 +174,8 @@ const Dashboard = () => {
               />
             ) : (
               <div className="space-y-4">
-                {recentDeals.map(deal => {
-                  const contact = getContactById(deal.contactId);
+{recentDeals.map(deal => {
+                  const contact = getContactById(deal.contact_id_c?.Id || deal.contact_id_c);
                   return (
                     <DealCard
                       key={deal.Id}
@@ -215,8 +215,8 @@ const Dashboard = () => {
             ) : (
               <div className="space-y-4">
                 {activities.map(activity => {
-                  const contact = getContactById(activity.contactId);
-                  const deal = activity.dealId ? getDealById(activity.dealId) : null;
+const contact = getContactById(activity.contact_id_c?.Id || activity.contact_id_c);
+                  const deal = activity.deal_id_c ? getDealById(activity.deal_id_c?.Id || activity.deal_id_c) : null;
                   return (
                     <ActivityItem
                       key={activity.Id}

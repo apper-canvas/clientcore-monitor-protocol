@@ -62,17 +62,17 @@ const Activities = () => {
   const filterActivities = () => {
     let filtered = activities;
 
-    if (searchTerm) {
+if (searchTerm) {
       const term = searchTerm.toLowerCase();
       filtered = filtered.filter(activity => {
-        const contact = getContactById(activity.contactId);
-        const deal = activity.dealId ? getDealById(activity.dealId) : null;
+        const contact = getContactById(activity.contact_id_c?.Id || activity.contact_id_c);
+        const deal = activity.deal_id_c ? getDealById(activity.deal_id_c?.Id || activity.deal_id_c) : null;
         
         return (
-          activity.description?.toLowerCase().includes(term) ||
-          activity.type?.toLowerCase().includes(term) ||
-          (contact && `${contact.firstName} ${contact.lastName}`.toLowerCase().includes(term)) ||
-          (deal && deal.title?.toLowerCase().includes(term))
+          activity.description_c?.toLowerCase().includes(term) ||
+          activity.type_c?.toLowerCase().includes(term) ||
+          (contact && `${contact.first_name_c} ${contact.last_name_c}`.toLowerCase().includes(term)) ||
+          (deal && deal.title_c?.toLowerCase().includes(term))
         );
       });
     }
@@ -234,8 +234,8 @@ const Activities = () => {
               <div className="p-6">
                 <div className="space-y-4">
                   {filteredActivities.map(activity => {
-                    const contact = getContactById(activity.contactId);
-                    const deal = activity.dealId ? getDealById(activity.dealId) : null;
+const contact = getContactById(activity.contact_id_c?.Id || activity.contact_id_c);
+                    const deal = activity.deal_id_c ? getDealById(activity.deal_id_c?.Id || activity.deal_id_c) : null;
                     
                     return (
                       <div key={activity.Id} className="relative group">

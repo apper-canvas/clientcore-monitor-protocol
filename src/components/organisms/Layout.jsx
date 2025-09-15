@@ -1,9 +1,10 @@
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Outlet } from "react-router-dom";
-import Sidebar from "@/components/organisms/Sidebar";
-
+import { AuthContext } from "@/App";
+import { Sidebar } from "@/components/organisms/Sidebar";
 const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { logout } = useContext(AuthContext);
 
   const handleMenuClick = () => {
     setSidebarOpen(true);
@@ -16,7 +17,7 @@ const Layout = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="flex h-screen">
-        <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
+        <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} logout={logout} />
         
         <div className="flex-1 flex flex-col overflow-hidden">
           <main className="flex-1 overflow-y-auto">

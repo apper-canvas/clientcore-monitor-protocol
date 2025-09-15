@@ -26,14 +26,14 @@ const DealForm = ({ deal, onSubmit, onCancel, isSubmitting = false }) => {
   useEffect(() => {
     if (deal) {
       setFormData({
-        title: deal.title || "",
-        contactId: deal.contactId || "",
-        value: deal.value?.toString() || "",
-        stage: deal.stage || "Lead",
-        probability: deal.probability?.toString() || "",
-        expectedCloseDate: deal.expectedCloseDate ? 
-          new Date(deal.expectedCloseDate).toISOString().split("T")[0] : "",
-        notes: deal.notes || ""
+title_c: deal.title_c || "",
+        contact_id_c: deal.contact_id_c?.Id || deal.contact_id_c || "",
+        value_c: deal.value_c?.toString() || "",
+        stage_c: deal.stage_c || "Lead",
+        probability_c: deal.probability_c?.toString() || "",
+        expected_close_date_c: deal.expected_close_date_c ? 
+          new Date(deal.expected_close_date_c).toISOString().split("T")[0] : "",
+        notes_c: deal.notes_c || ""
       });
     }
   }, [deal]);
@@ -82,10 +82,10 @@ const DealForm = ({ deal, onSubmit, onCancel, isSubmitting = false }) => {
     e.preventDefault();
     if (validateForm()) {
       const dealData = {
-        ...formData,
-        value: parseFloat(formData.value),
-        probability: parseInt(formData.probability),
-        expectedCloseDate: new Date(formData.expectedCloseDate).toISOString()
+...formData,
+        value_c: parseFloat(formData.value_c),
+        probability_c: parseInt(formData.probability_c),
+        expected_close_date_c: new Date(formData.expected_close_date_c).toISOString()
       };
       onSubmit(dealData);
     }
@@ -148,8 +148,8 @@ const DealForm = ({ deal, onSubmit, onCancel, isSubmitting = false }) => {
           >
             <option value="">Select a contact</option>
             {contacts.map(contact => (
-              <option key={contact.Id} value={contact.Id}>
-                {contact.firstName} {contact.lastName} - {contact.company}
+<option key={contact.Id} value={contact.Id}>
+                {contact.first_name_c} {contact.last_name_c} - {contact.company_c}
               </option>
             ))}
           </select>

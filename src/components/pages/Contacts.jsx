@@ -52,12 +52,12 @@ const Contacts = () => {
     let filtered = contacts;
 
     if (searchTerm) {
-      const term = searchTerm.toLowerCase();
+const term = searchTerm.toLowerCase();
       filtered = filtered.filter(contact =>
-        contact.firstName?.toLowerCase().includes(term) ||
-        contact.lastName?.toLowerCase().includes(term) ||
-        contact.email?.toLowerCase().includes(term) ||
-        contact.company?.toLowerCase().includes(term)
+        contact.first_name_c?.toLowerCase().includes(term) ||
+        contact.last_name_c?.toLowerCase().includes(term) ||
+        contact.email_c?.toLowerCase().includes(term) ||
+        contact.company_c?.toLowerCase().includes(term)
       );
     }
 

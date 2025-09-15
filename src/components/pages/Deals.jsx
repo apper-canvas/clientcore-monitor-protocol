@@ -105,7 +105,7 @@ const Deals = () => {
   };
 
   const getDealsByStage = (stage) => {
-    return deals.filter(deal => deal.stage === stage);
+return deals.filter(deal => deal.stage_c === stage);
   };
 
   const getContactById = (id) => {
@@ -121,7 +121,7 @@ const Deals = () => {
     }).format(amount);
   };
 
-  const calculateStageValue = (stage) => {
+const calculateStageValue = (stage) => {
     return getDealsByStage(stage).reduce((sum, deal) => sum + deal.value, 0);
   };
 
@@ -223,20 +223,20 @@ const Deals = () => {
                 <h3 className="text-lg font-semibold text-primary mb-4">Pipeline Summary</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                   <div className="text-center">
-                    <div className="text-2xl font-bold bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent mb-1">
+<div className="text-2xl font-bold bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent mb-1">
                       {deals.length}
                     </div>
                     <div className="text-sm text-gray-600">Total Deals</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold bg-gradient-to-r from-success to-success/80 bg-clip-text text-transparent mb-1">
-                      {formatCurrency(deals.reduce((sum, deal) => sum + deal.value, 0))}
+                      {formatCurrency(deals.reduce((sum, deal) => sum + deal.value_c, 0))}
                     </div>
                     <div className="text-sm text-gray-600">Total Value</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold bg-gradient-to-r from-info to-info/80 bg-clip-text text-transparent mb-1">
-                      {Math.round(deals.reduce((sum, deal) => sum + deal.probability, 0) / deals.length)}%
+                      {Math.round(deals.reduce((sum, deal) => sum + deal.probability_c, 0) / deals.length)}%
                     </div>
                     <div className="text-sm text-gray-600">Avg Probability</div>
                   </div>
