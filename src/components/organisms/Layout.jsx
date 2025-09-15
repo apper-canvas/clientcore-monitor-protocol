@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { AuthContext } from "@/App";
-import { Sidebar } from "@/components/organisms/Sidebar";
+import Sidebar from "@/components/organisms/Sidebar";
 const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { logout } = useContext(AuthContext);
